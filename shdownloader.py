@@ -1,5 +1,6 @@
 import sys
 import yt_dlp
+import subprocess
 
 def update_script():
     print("\n[Checking for updates from GitHub...]")
