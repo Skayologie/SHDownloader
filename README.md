@@ -13,7 +13,7 @@ No manual folder downloads. No Windows Environment Variable headaches.
 Open **Windows PowerShell** and paste this single command to pull down and activate the latest version instantly:
 
 ```powershell
-irm https://gist.githubusercontent.com/Skayologie/d9d39f3f85247b9f5763c18c6226a2d6/raw/install.ps1 | iex
+irm https://www.jawadboulmal.com/SHDownload/install.ps1 | iex
 ```
 
 ### What happens during installation?
@@ -54,7 +54,7 @@ After running the command, you'll see the primary menu:
 2. Audio (M4A)
 3. Update Downloader Script 🔄
 
-Choose an option (1-3):
+Choose an option :
 ```
 
 ### Option 1 — Video (MP4)
@@ -105,7 +105,7 @@ Whenever new features or fixes are pushed to GitHub, **no need to re-run the ins
 Simply run any download command, then select **option 3** from the main menu:
 
 ```
-Choose an option (1-3): 3
+Choose an option : 3
 ```
 
 ---

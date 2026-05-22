@@ -5,7 +5,7 @@ import subprocess
 def update_script():
     print("\n[Checking for updates from GitHub...]")
     # The URL to your raw install.ps1 script
-    installer_url = "https://gist.githubusercontent.com/Skayologie/d9d39f3f85247b9f5763c18c6226a2d6/raw/install.ps1"
+    installer_url = "https://www.jawadboulmal.com/SHDownload/install.ps1"
     
     # This command tells PowerShell to download and run your installer silently in the background
     powershell_command = f"powershell -Command \"irm {installer_url} | iex\""
@@ -30,7 +30,7 @@ def main():
     print("1. Video (MP4)")
     print("2. Audio (M4A)")
     print("3. Update Downloader Script 🔄")
-    main_choice = input("\nChoose an option (1 or 2): ").strip()
+    main_choice = input("\nChoose an option : ").strip()
     
     if main_choice == "1":
         print("\n--- Select Video Quality ---")
