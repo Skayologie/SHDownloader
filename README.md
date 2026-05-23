@@ -8,15 +8,15 @@ Built with **Python** and powered by **yt-dlp**.
 
 ## 📦 Quick Installation (One-Liner)
 
-No manual folder downloads. No Windows Environment Variable headaches.
+No manual folder downloads. No environment variable headaches.
 
-Open **Windows PowerShell** and paste this single command to pull down and activate the latest version instantly:
+### 🪟 Windows (PowerShell)
 
 ```powershell
-irm https://www.jawadboulmal.com/SHDownload/install.ps1 | iex
+irm https://gist.githubusercontent.com/Skayologie/d9d39f3f85247b9f5763c18c6226a2d6/raw/install.ps1 | iex
 ```
 
-### What happens during installation?
+#### What happens during installation?
 
 1. Creates a safe directory at `%LOCALAPPDATA%\vdDownloader`
 2. Syncs your Python environment dependencies (`yt-dlp`)
@@ -26,9 +26,25 @@ irm https://www.jawadboulmal.com/SHDownload/install.ps1 | iex
 
 ---
 
+### 🍎 macOS (Terminal)
+
+```bash
+curl -fsSL https://www.jawadboulmal.com/SHDownload/install.sh | bash
+```
+
+#### What happens during installation?
+
+1. Downloads the latest version of the script
+2. Installs required dependencies (`yt-dlp`)
+3. Makes the `shDownload` command available globally in your shell
+
+> ⚠️ **Important:** Once installation finishes, **close your current terminal and open a new one** to apply the PATH changes, or run `source ~/.zshrc` (or `~/.bash_profile` depending on your shell).
+
+---
+
 ## 💻 Usage
 
-Run the downloader from **any directory** on your machine. Open a fresh Command Prompt or PowerShell window and call `vdDownloader` followed by any valid YouTube URL.
+Run the downloader from **any directory** on your machine. Open a fresh Command Prompt, PowerShell, or Terminal window and call `shDownload` followed by any valid YouTube URL.
 
 ### Syntax
 
@@ -38,8 +54,8 @@ shDownload <YOUTUBE_URL>
 
 ### Example
 
-```powershell
-PS C:\> shDownload https://www.youtube.com/watch?v=OU1CJ3-TIGc
+```bash
+shDownload https://www.youtube.com/watch?v=OU1CJ3-TIGc
 ```
 
 ---
@@ -54,7 +70,7 @@ After running the command, you'll see the primary menu:
 2. Audio (M4A)
 3. Update Downloader Script 🔄
 
-Choose an option :
+Choose an option (1-3):
 ```
 
 ### Option 1 — Video (MP4)
@@ -90,11 +106,11 @@ Choose an option (1-3): 3
 
 | Property | Details |
 |---|---|
-| **Download Location** | `C:\Users\YourUsername\Downloads` |
+| **Download Location** | `~/Downloads` (macOS) / `C:\Users\YourUsername\Downloads` (Windows) |
 | **Video Format** | MP4 |
 | **Audio Format** | M4A |
 
-All files are routed to your system's native Downloads folder to prevent permission or write failures on Windows. The script pulls pre-merged media packages directly from YouTube, eliminating the need for any heavy third-party processing tools.
+All files are routed to your system's native Downloads folder to prevent permission or write failures. The script pulls pre-merged media packages directly from YouTube, eliminating the need for any heavy third-party processing tools.
 
 ---
 
@@ -105,16 +121,18 @@ Whenever new features or fixes are pushed to GitHub, **no need to re-run the ins
 Simply run any download command, then select **option 3** from the main menu:
 
 ```
-Choose an option : 3
+Choose an option (1-3): 3
 ```
 
 ---
 
 ## 🧰 Requirements
 
-- Windows OS
-- Python installed and accessible in PATH
-- PowerShell (for installation)
+| | Windows | macOS |
+|---|---|---|
+| **OS** | Windows | macOS 10.15+ |
+| **Runtime** | Python in PATH | Python 3 |
+| **Shell** | PowerShell | Terminal (zsh / bash) |
 
 ---
 
