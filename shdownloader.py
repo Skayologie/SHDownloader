@@ -63,7 +63,6 @@ def main():
     
     base_ydl_opts = {
         'outtmpl': os.path.join(downloads_folder, '%(title)s.%(ext)s'),
-        'restrictfilenames': True,
         'ignoreerrors': True,
         'retries': 3,
         'fragment_retries': 3,
