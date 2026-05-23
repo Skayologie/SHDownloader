@@ -37,8 +37,8 @@ def show_help():
     print("  - Dedicated playlist links bypass single choice menus")
     print("    and trigger folder-organized collection loops.")
     print("\nFile Storage:")
-    print("  All downloaded media assets are routed natively to your")
-    print("  system user's default 'Downloads' tree directory.")
+    print("  All downloaded media assets are saved directly into your")
+    print("  terminal's current active working directory.")
     print("=======================================================\n")
     sys.exit(0)
 
@@ -59,7 +59,7 @@ def main():
         return
         
     url = arg
-    downloads_folder = os.path.join(os.path.expanduser('~'), 'Downloads')
+    downloads_folder = os.getcwd()
     
     base_ydl_opts = {
         'outtmpl': os.path.join(downloads_folder, '%(title)s.%(ext)s'),
