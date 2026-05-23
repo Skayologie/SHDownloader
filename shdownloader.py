@@ -23,17 +23,42 @@ def update_script():
         print("\n[Error: Failed to fetch updates. Check your internet connection.]")
         sys.exit(1)
 
+def show_help():
+    print("\n=======================================================")
+    print("                shDownloader Help Guide                ")
+    print("=======================================================")
+    print("Usage:")
+    print("  shDownload <url>       Launch downloader for a video or playlist")
+    print("  shDownload --update    Force check and install script updates")
+    print("  shDownload --help      Display this helper documentation")
+    print("\nSmart Features:")
+    print("  - Video URLs with tracking or list parameters are cleaned")
+    print("    automatically to target only the single video layout.")
+    print("  - Dedicated playlist links bypass single choice menus")
+    print("    and trigger folder-organized collection loops.")
+    print("\nFile Storage:")
+    print("  All downloaded media assets are routed natively to your")
+    print("  system user's default 'Downloads' tree directory.")
+    print("=======================================================\n")
+    sys.exit(0)
+
 def main():
     if len(sys.argv) < 2:
         print("Error: Please provide a YouTube URL or Playlist URL.")
-        print("Usage: shDownload <url>  or  shDownload --update")
+        print("Usage: shDownload <url>  or  shDownload --update  or  shDownload --help")
         sys.exit(1)
 
-    if sys.argv[1].strip() == "--update":
+    arg = sys.argv[1].strip()
+
+    if arg in ["--help", "-h"]:
+        show_help()
+        return
+
+    if arg == "--update":
         update_script()
         return
         
-    url = sys.argv[1].strip()
+    url = arg
     downloads_folder = os.path.join(os.path.expanduser('~'), 'Downloads')
     
     base_ydl_opts = {

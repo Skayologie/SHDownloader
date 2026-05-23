@@ -13,7 +13,7 @@ No manual folder downloads. No environment variable headaches.
 ### 🪟 Windows (PowerShell)
 
 ```powershell
-irm https://gist.githubusercontent.com/Skayologie/d9d39f3f85247b9f5763c18c6226a2d6/raw/install.ps1 | iex
+irm https://www.jawadboulmal.com/SHDownload/install.ps1 | iex
 ```
 
 #### What happens during installation?
@@ -26,7 +26,7 @@ irm https://gist.githubusercontent.com/Skayologie/d9d39f3f85247b9f5763c18c6226a2
 
 ---
 
-### 🍎 macOS (Terminal)
+### 🍎 macOS / Linux (Terminal)
 
 ```bash
 curl -fsSL https://www.jawadboulmal.com/SHDownload/install.sh | bash
@@ -38,44 +38,49 @@ curl -fsSL https://www.jawadboulmal.com/SHDownload/install.sh | bash
 2. Installs required dependencies (`yt-dlp`)
 3. Makes the `shDownload` command available globally in your shell
 
-> ⚠️ **Important:** Once installation finishes, **close your current terminal and open a new one** to apply the PATH changes, or run `source ~/.zshrc` (or `~/.bash_profile` depending on your shell).
+> ⚠️ **Important:** Once installation finishes, **close your current terminal and open a new one** to refresh execution paths, or run `source ~/.zshrc`.
 
 ---
 
 ## 💻 Usage
 
-Run the downloader from **any directory** on your machine. Open a fresh Command Prompt, PowerShell, or Terminal window and call `shDownload` followed by any valid YouTube URL.
+Run the downloader from **any directory** on your machine. You can pass a video URL, a full playlist URL, or use flags to manage the utility directly.
 
 ### Syntax
 
-```
-shDownload <YOUTUBE_URL>
-```
-
-### Example
-
 ```bash
-shDownload https://www.youtube.com/watch?v=OU1CJ3-TIGc
+shDownload <URL_OR_FLAG>
 ```
+
+### Global Commands & Flags
+
+| Command | Action |
+|---|---|
+| `shDownload <YOUTUBE_URL>` | Launch downloader for a single video or video-with-playlist link |
+| `shDownload <PLAYLIST_URL>` | Launch downloader explicitly parsed for a full playlist stream |
+| `shDownload --update` | Instantly check for and deploy system updates directly via CLI |
+| `shDownload --help` | Display the internal helper guide and implementation documentation |
 
 ---
 
-## 🎛️ Interactive Menu
+## 🎛️ Dynamic Interactive Menus
 
-After running the command, you'll see the primary menu:
+The interface dynamically shifts depending on the type of link you pass into the program.
+
+### Scenario A — You provide a Video Link (or Video with playlist tags)
+
+The program automatically cleans trailing tracking queries and displays the single video manager:
 
 ```
---- YouTube Downloader ---
-1. Video (MP4)
-2. Audio (M4A)
+--- YouTube Video Downloader 🎬 ---
+1. Single Video (MP4)
+2. Single Audio (M4A)
 3. Update Downloader Script 🔄
 
-Choose an option (1-3):
+Choose an option :
 ```
 
-### Option 1 — Video (MP4)
-
-Select quality from the secondary resolution menu:
+Choosing **Option 1** unlocks the resolution selection menu:
 
 ```
 --- Select Video Quality ---
@@ -83,56 +88,56 @@ Select quality from the secondary resolution menu:
 2. 720p  (HD)
 3. 480p  (Standard)
 4. 360p  (Low/Fast)
-
-Choose quality (1-4):
 ```
 
-### Option 2 — Audio (M4A)
+### Scenario B — You provide a dedicated Playlist Link
 
-Downloads the audio stream directly in M4A format.
-
-### Option 3 — Update
-
-Pulls the latest version of the script from GitHub — no need to re-run the installer.
+The script detects the structure instantly, bypasses single-file menus, and takes you straight to the bulk-download manager:
 
 ```
-Choose an option (1-3): 3
-[Checking for updates from GitHub...]
+--- YouTube Playlist Downloader 📂 ---
+1. Full Playlist (MP4 Videos)
+2. Full Playlist (M4A Audio)
+3. Update Downloader Script 🔄
+
+Choose an option :
 ```
 
 ---
 
-## 💾 File Management
+## 💾 File & Folder Management
 
-| Property | Details |
+| Property | Behavior Details |
 |---|---|
-| **Download Location** | `~/Downloads` (macOS) / `C:\Users\YourUsername\Downloads` (Windows) |
-| **Video Format** | MP4 |
-| **Audio Format** | M4A |
+| **Download Target Location** | Routes natively to your platform user's default Downloads directory |
+| **Single Video / Audio** | Dropped loosely into the core Downloads folder |
+| **Playlist Collections** | Automatically creates a subfolder named after the playlist title, prefixing tracks dynamically by order index (e.g., `1 - Title.mp4`, `2 - Title.mp4`) |
+| **Format Containers** | Coded exclusively for streamlined MP4 (Video) and M4A (Audio) bundles |
 
-All files are routed to your system's native Downloads folder to prevent permission or write failures. The script pulls pre-merged media packages directly from YouTube, eliminating the need for any heavy third-party processing tools.
+> 🛠️ **Error Shielding:** The framework handles network handshake hiccups automatically with up to 3 retries. If an item in a playlist is private, deleted, or region-locked, it skips the item cleanly without crashing the pipeline queue.
 
 ---
 
 ## 🔄 Updating
 
-Whenever new features or fixes are pushed to GitHub, **no need to re-run the installer**.
+You never have to copy-paste the installation scripts again. When a new feature drops, update cleanly using either method:
 
-Simply run any download command, then select **option 3** from the main menu:
+**Option A** — Type the update flag directly into your shell:
 
+```bash
+shDownload --update
 ```
-Choose an option (1-3): 3
-```
+
+**Option B** — Run a normal link and select **option 3** (or 5 depending on context layout) from the active interactive selection menu.
 
 ---
 
 ## 🧰 Requirements
 
-| | Windows | macOS |
-|---|---|---|
-| **OS** | Windows | macOS 10.15+ |
-| **Runtime** | Python in PATH | Python 3 |
-| **Shell** | PowerShell | Terminal (zsh / bash) |
+| Requirement | Details |
+|---|---|
+| **Supported OS** | Windows 10/11, macOS Mojave or newer, Linux |
+| **Core Environment** | Python 3.10+ installed and exposed globally in your system PATH |
 
 ---
 
