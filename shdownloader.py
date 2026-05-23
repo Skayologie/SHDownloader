@@ -1,4 +1,5 @@
 import sys
+import os
 import yt_dlp
 import subprocess
 
@@ -18,13 +19,19 @@ def update_script():
     except subprocess.CalledProcessError:
         print("\n[Error: Failed to connect to GitHub. Check your internet connection.]")
         sys.exit(1)
+
 def main():
     if len(sys.argv) < 2:
         print("Error: Please provide a YouTube URL.")
         print("Usage: shDownload <youtube_url>")
         sys.exit(1)
         
-    url = sys.argv[1]
+    url = sys.argv[1].strip()
+    
+    if "watch?v=" in url and "&list=" in url:
+        url = url.split("&list=")[0]
+    
+    downloads_folder = os.path.join(os.path.expanduser('~'), 'Downloads')
     
     print("\n--- YouTube Downloader ---")
     print("1. Video (MP4)")
@@ -53,10 +60,9 @@ def main():
         
         print(f"\n[Downloading best pre-merged MP4 up to {max_height}p...]\n")
         ydl_opts = {
-            # This logic targets pre-merged MP4s (b) with a height capped at what the user chose.
-            # If a strict pre-merged match doesn't exist, it safely falls back to the nearest available format.
             'format': f'b[ext=mp4][height<={max_height}]/b[height<={max_height}]/best',
-            'outtmpl': '%(title)s.%(ext)s',
+            'outtmpl': os.path.join(downloads_folder, '%(title)s.%(ext)s'),
+            'restrictfilenames': True, # Keeps file locking clean on Windows
         }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
@@ -65,7 +71,8 @@ def main():
         print("\n[Downloading direct M4A audio stream...]\n")
         ydl_opts = {
             'format': 'bestaudio[ext=m4a]/bestaudio',
-            'outtmpl': '%(title)s.%(ext)s',
+            'outtmpl': os.path.join(downloads_folder, '%(title)s.%(ext)s'),
+            'restrictfilenames': True,
         }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
